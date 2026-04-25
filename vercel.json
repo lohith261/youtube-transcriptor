@@ -3,13 +3,11 @@
   "buildCommand": "cd frontend && npm install && npm run build",
   "outputDirectory": "frontend/dist",
   "functions": {
-    "api/index.ts": {
-      "memory": 512,
-      "maxDuration": 30
-    }
+    "api/health.ts": { "memory": 256, "maxDuration": 10 },
+    "api/transcript/single.ts": { "memory": 512, "maxDuration": 30 },
+    "api/transcript/playlist.ts": { "memory": 512, "maxDuration": 60 }
   },
   "rewrites": [
-    { "source": "/api/:path*", "destination": "/api/index" },
-    { "source": "/(.*)",       "destination": "/" }
+    { "source": "/(.*)", "destination": "/" }
   ]
 }
