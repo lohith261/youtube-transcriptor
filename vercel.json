@@ -7,7 +7,8 @@
     "api/transcript/single.ts": { "memory": 512, "maxDuration": 30 },
     "api/transcript/playlist.ts": { "memory": 512, "maxDuration": 60 }
   },
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
