@@ -10,11 +10,13 @@ const allowedOrigins = (process.env.ALLOWED_ORIGINS ?? 'http://localhost:5173')
   .split(',')
   .map((o) => o.trim());
 
+const isWildcard = allowedOrigins.includes('*');
+
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (e.g., Postman, server-to-server)
-      if (!origin || allowedOrigins.includes(origin)) {
+      // In production with wildcard, or no-origin requests (Postman, same-origin serverless)
+      if (!origin || isWildcard || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
         callback(new Error(`Origin ${origin} not allowed by CORS`));
