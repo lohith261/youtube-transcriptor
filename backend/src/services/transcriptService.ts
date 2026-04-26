@@ -33,7 +33,7 @@ function classifyError(err: unknown): string {
 function isFirecrawlWorthTrying(err: unknown): boolean {
   const message = err instanceof Error ? err.message.toLowerCase() : String(err).toLowerCase();
   // Private / no-transcript cases won't be helped by Firecrawl
-  if (message.includes('private') || message.includes('no transcript') || message.includes('could not find')) {
+  if (message.includes('private') || message.includes('no transcript') || message.includes('could not find') || message.includes('disabled')) {
     return false;
   }
   return true;
